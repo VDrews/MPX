@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=MPX"
+             x:Class="MPX.Views.DesktopView">
+
+  <Grid RowSpacing="0" x:Name="grid">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <!--
+    <WebView x:Name="webView"
+             Grid.Row="1" Grid.ColumnSpan="2"
+             Source="https://www.youtube.com/"
+             VerticalOptions="FillAndExpand"
+             Navigating="WebView_OnNavigating"
+             Navigated="WebView_OnNavigated"/>
+             -->
+    
+    
+    
+    <!-- PopUpTrigger -->
+    <BoxView x:Name="PopUpTrigger" BackgroundColor="Transparent" InputTransparent="True"
+         Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+
+
+    <!-- Barra de Navegación-->
+    <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#383838" RowSpacing="0">
+      
+      <Grid.RowDefinitions>
+        <RowDefinition Height="35"/>
+        <RowDefinition Height="35"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="40"/>
+        <ColumnDefinition Width="40"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="40"/>
+        <ColumnDefinition Width="40"/>
+      </Grid.ColumnDefinitions>
+      
+      <BoxView Grid.ColumnSpan="6" Color="#242424"/>
+      
+      <!-- Lista de Pestañas -->
+      <Grid x:Name="CarouselTabs" RowSpacing="0" ColumnSpacing="0"
+            HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+            Grid.Column="1" Grid.ColumnSpan="4">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+      
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+      </Grid>      
+      
+      
+      <Image Source="MenuIcon.png" x:Name="BtnMenu"
+             VerticalOptions="FillAndExpand"
+             Grid.RowSpan="2"/>
+      
+      <Image Source="LogoMenuIcon.png" x:Name="LogoIcon"
+             Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+      <Image x:Name="BtnBack" Source="BackIcon.png" IsEnabled="{Binding CanGoBack}"
+             HeightRequest="20" WidthRequest="20"
+             HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+             Grid.Column="1" Grid.Row="1"/>
+
+      <Image x:Name="BtnNext" Source="NextIcon.png" IsEnabled="{Binding CanGoFoward}"
+             HeightRequest="20" WidthRequest="20"
+             HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+             Grid.Column="2" Grid.Row="1"/>
+
+      <Image x:Name="BtnAdd" Source="AddTabIcon.png"
+             HeightRequest="20" WidthRequest="20"
+             HorizontalOptions="Center" VerticalOptions="Center"
+             Grid.Column="5" Grid.Row="1"/>
+
+
+
+      <StackLayout Orientation="Horizontal" Padding="5" Spacing="0"
+                   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                   Grid.Row="1" Grid.Column="3">
+
+        <!--  
+      <controls:ExtendedEntry x:Name="DirectionBar" 
+                              Placeholder="Escribe direccion web" 
+                              Font="Medium"
+                              TextColor="White"
+                              BackgroundColor="Transparent"
+                              HasBorder="false"
+                              Completed="OnEntryCompleted"
+                              Keyboard="Url"
+                              XAlign="Center"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="StartAndExpand"/> 
+                              -->
+
+        <!--
+        <SearchBar x:Name="DirectionBar"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="Transparent"
+                   SearchCommand="OnEntryCompleted"/>
+                   -->
+
+        
+        <Entry x:Name="DirectionBar" 
+               BackgroundColor="Gray"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="CenterAndExpand"
+               Placeholder="Escribir dirección web"
+               Completed="OnEntryCompleted"
+               Keyboard="Url"/>
+        <Image x:Name="BtnFavorites" Source="FavoriteIcon.png"
+          HeightRequest="50" WidthRequest="40"
+          HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+      </StackLayout>
+
+
+    </Grid>
+    
+      <!-- Popup Menu -->
+
+    
+      <Grid x:Name="PopUpMenu" TranslationX="-500"
+            BackgroundColor="#383838" IsVisible="True"
+            WidthRequest="400"
+            Grid.Row="1" 
+            VerticalOptions="FillAndExpand">
+          <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+
+          </Grid.RowDefinitions>
+
+
+          <!--Botones-->
+          <Grid Grid.Row="0"> 
+          
+              <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+          
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+
+              <Image x:Name="BtnHistorial" Source="HistorialIcon.png" HorizontalOptions="Center"
+                     HeightRequest="30" WidthRequest="30" Margin="10"/>
+
+              <Image x:Name="BtnFavorite" Source="FavoriteIcon.png" Grid.Column="1" HorizontalOptions="Center"
+                     HeightRequest="30" WidthRequest="30" Margin="10"/>
+
+              <Image x:Name="BtnConfig" Source="ConfigIcon.png" Grid.Column="2" HorizontalOptions="Center"
+                     HeightRequest="30" WidthRequest="30" Margin="10"/>
+          </Grid>
+       
+
+        
+        
+
+
+          <!-- Lista -->
+          <StackLayout Grid.Row="1" Padding="5,5,5,5">
+              <Label Text="Marcadores" TextColor="White" FontSize="Large"/>
+              <ScrollView BackgroundColor="Gray">
+                  <ListView x:Name="lista"
+                            ItemSelected="OnItemSelected">
+                      <ListView.ItemTemplate>
+                          <DataTemplate>
+                              <ViewCell>
+
+                                  <StackLayout x:Name="ItemList" Padding="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                      <Label Text="{Binding link}" TextColor="Black" VerticalOptions="Center"/>
+                                      <Image Source="CloseTabIcon.png" WidthRequest="30" HeightRequest="30"
+                                              HorizontalOptions="EndAndExpand" VerticalOptions="Center"> 
+                                        <Image.GestureRecognizers>
+                                          <TapGestureRecognizer Command="{Binding DeleteItemCommand}"/>
+                                        </Image.GestureRecognizers>
+                                      </Image>
+                                  </StackLayout>
+                              </ViewCell>
+                          </DataTemplate>
+                      </ListView.ItemTemplate>
+                  </ListView>
+              </ScrollView>
+          </StackLayout>
+
+      </Grid>
+
+  </Grid>
+
+
+</ContentPage>
